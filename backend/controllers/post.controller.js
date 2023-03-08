@@ -75,13 +75,11 @@ module.exports.likePost = async (req, res) => {
 
 module.exports.dislikePost = async (req, res) => {
   const post = await PostModel.findById(req.params.id);
-
   if (!post) {
     res
       .status(400)
       .json({ message: "Ce message n'existe pas dans la base de données" });
   }
-
   try {
     await PostModel.findByIdAndUpdate(
       post,
